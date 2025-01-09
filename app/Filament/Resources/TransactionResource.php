@@ -13,6 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use App\Enums\TransactionType;
+
+
 class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
@@ -23,18 +26,21 @@ class TransactionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('type')
+                Forms\Components\DatePicker::make('date')
+                    ->default(now())
+                    ->displayFormat('d-m-Y')
+                    ->placeholder('dd-mm-yyyy')
+                    ->native(false)
+                    ->required(),
+                Forms\Components\Radio::make('type')
                     ->required()
-                    ->maxLength(255)
-                    ->default('EXPENSE'),
+                    ->options(TransactionType::class)
+                    ->default(TransactionType::EXPENSE),
                 Forms\Components\TextInput::make('amount')
                     ->required()
                     ->numeric(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('date')
-                    ->required()
-                    ->maxLength(255),
             ]);
     }
 
@@ -86,4 +92,9 @@ class TransactionResource extends Resource
             'edit' => Pages\EditTransaction::route('/{record}/edit'),
         ];
     }
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    
 }
