@@ -11,7 +11,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 use App\Enums\TransactionType;
 
+
 use App\Models\Transaction;
+
 
 class ListTransactions extends ListRecords
 {
@@ -29,14 +31,15 @@ class ListTransactions extends ListRecords
             'All' => Tab::make(),
 
             'Income' => Tab::make()
-                ->badge(Transaction::query()->where('type', TransactionType::INCOME)->count())
-                ->badgeColor('success')
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', TransactionType::INCOME)),
-                
+            ->badge(Transaction::query()->where('type', TransactionType::INCOME)->count())
+            ->badgeColor('success')
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', TransactionType::INCOME)),
+            
             'Expense' => Tab::make()
-                ->badge(Transaction::query()->where('type', TransactionType::EXPENSE)->count())
-                ->badgeColor('danger')
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', TransactionType::EXPENSE)),
+            ->badge(Transaction::query()->where('type', TransactionType::EXPENSE)->count())
+            ->badgeColor('danger')
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', TransactionType::EXPENSE)),
         ];
+
     }
 }
