@@ -42,4 +42,11 @@ class ListTransactions extends ListRecords
         ];
 
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            TransactionResource\Widgets\TransactionOverview::class,
+        ];
+    }
 }
