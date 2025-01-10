@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+use App\Http\Controllers\api\v2\TransactionController;
+
+Route::prefix('v2/transactions')->group(function () {
+
+    // List all transactions
+    Route::get('/', [TransactionController::class, 'index']);
+
+    // Store a new transaction
+    Route::post('/', [TransactionController::class, 'store']);
+    
+
+});
