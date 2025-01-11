@@ -52,6 +52,12 @@ class TransactionResource extends Resource
                     ->date('d-m-Y')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type')
+                ->badge()
+                
+                ->color(fn (string $state): string => match ($state) {
+                    TransactionType::INCOME->value => 'success',
+                    TransactionType::EXPENSE->value => 'danger'
+                })
                     ->searchable(),
                 
         Tables\Columns\TextColumn::make('description')
