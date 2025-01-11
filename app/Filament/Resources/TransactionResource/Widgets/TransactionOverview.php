@@ -37,9 +37,9 @@ class TransactionOverview extends BaseWidget
 
         return [
             Stat::make('Total Transactions', $this->getPageTableQuery()->count()),
-            Stat::make('Total Income Amount', '$ ' . $formattedIncome),
-            Stat::make('Total Expense Amount', '$ ' . $formattedExpense),
-            Stat::make('Balance Amount', '$ ' . $formattedBalance),
+            Stat::make('Total Income Amount', '₹' . $formattedIncome),
+            Stat::make('Total Expense Amount', '₹' . $formattedExpense),
+            Stat::make('Balance Amount', '₹' . $formattedBalance),
         ];
     }
 
