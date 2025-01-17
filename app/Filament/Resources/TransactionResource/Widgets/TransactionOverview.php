@@ -34,12 +34,11 @@ class TransactionOverview extends BaseWidget
         $formattedIncome = number_format($income, 2);
         $formattedExpense = number_format($expense, 2);
         $formattedBalance = number_format($balance, 2);
-
         return [
             Stat::make('Total Transactions', $this->getPageTableQuery()->count()),
-            Stat::make('Total Income Amount', '₹' . $formattedIncome),
-            Stat::make('Total Expense Amount', '₹' . $formattedExpense),
-            Stat::make('Balance Amount', '₹' . $formattedBalance),
+            Stat::make('Total Income Amount', '$ ' . $formattedIncome),
+            Stat::make('Total Expense Amount', '$ ' . $formattedExpense),
+            Stat::make('Balance Amount', '$ ' . $formattedBalance),
         ];
     }
 
