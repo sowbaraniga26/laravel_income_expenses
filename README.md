@@ -1,5 +1,5 @@
 # laravel_income_expenses
  
-![Image](screenshot/admin_login_image.png)
-![Image](screenshot/Transaction_image.png)
-![Image](screenshot/Transaction_Report_pdf_image.png)
+![Image](screenshots/admin_login_image.png)
+![Image](screenshots/Transaction_image.png)
+![Image](screenshots/Transaction_Report_pdf_image.png)
